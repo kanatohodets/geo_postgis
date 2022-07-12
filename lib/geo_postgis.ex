@@ -143,6 +143,14 @@ defmodule Geo.PostGIS do
     quote do: fragment("ST_Boundary(?)", unquote(geometry))
   end
 
+  defmacro st_bounding_diagonal(geometry) do
+    quote do: fragment("ST_BoundingDiagonal(?)", unquote(geometry))
+  end
+
+  defmacro st_bounding_diagonal(geometry, bool) do
+    quote do: fragment("ST_BoundingDiagonal(?, ?)", unquote(geometry), unquote(bool))
+  end
+
   defmacro st_buffer(geometry, double) do
     quote do: fragment("ST_Buffer(?, ?)", unquote(geometry), unquote(double))
   end
