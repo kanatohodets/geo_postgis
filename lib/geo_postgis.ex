@@ -416,4 +416,32 @@ defmodule Geo.PostGIS do
   defmacro st_build_area(geometryA) do
     quote do: fragment("ST_BuildArea(?)", unquote(geometryA))
   end
+
+  defmacro st_simplify(geometryA, float) do
+    quote do:
+      fragment(
+        "ST_Simplify(?, ?)",
+        unquote(geometryA),
+        unquote(float)
+      )
+  end
+
+  defmacro st_simplify(geometryA, float, bool) do
+    quote do:
+      fragment(
+        "ST_Simplify(?, ?, ?)",
+        unquote(geometryA),
+        unquote(float),
+        unquote(bool)
+      )
+  end
+
+  defmacro st_simplify_preserve_topology(geometryA, float) do
+    quote do:
+      fragment(
+        "ST_SimplifyPreserveTopology(?, ?)",
+        unquote(geometryA),
+        unquote(float)
+      )
+  end
 end
