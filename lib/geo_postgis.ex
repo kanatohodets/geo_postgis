@@ -395,6 +395,18 @@ defmodule Geo.PostGIS do
     quote do: fragment("ST_FlipCoordinates(?)", unquote(geometryA))
   end
 
+  defmacro st_force_2d(geometryA) do
+    quote do: fragment("ST_Force2D(?)", unquote(geometryA))
+  end
+
+  defmacro st_force_3d(geometryA) do
+    quote do: fragment("ST_Force3D(?)", unquote(geometryA))
+  end
+
+  defmacro st_force_3d(geometryA, float) do
+    quote do: fragment("ST_Force3D(?, ?)", unquote(geometryA), unquote(float))
+  end
+
   defmacro st_generate_points(geometryA, npoints) do
     quote do: fragment("ST_GeneratePoints(?,?)", unquote(geometryA), unquote(npoints))
   end
